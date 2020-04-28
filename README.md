@@ -129,3 +129,4 @@ classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['
 ```
 ## Simple implementation using OpenCV  
 ![alt text](test.png)  
+All the code used is available in the utils folder.
