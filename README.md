@@ -31,6 +31,9 @@ for item in tqdm(all_images) :
 ```  
 This will allow us to obtain cropped images, but not all images will get cropped try tweaking the **detectMultiScale** parameters to obtain better results.  
 I also did some manual cropping to have more samples but still the number of images obtained was relatively small (~1000 images for both categories).  
+Here's sample of the outcome :  
+  
+![alt text](test2.JPG)
     
 ## Spliting the data by category  
 ```Python
