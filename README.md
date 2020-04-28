@@ -2,6 +2,9 @@
 The dataset was provided during [**Spot the Mask Challenge by #ZindiWeekendz**](https://zindi.africa/hackathons/spot-the-mask-challenge).  
   
   In this repo we will use the entire dataset in our favor (I did use the results of a privously trained model on the training part to label the unlabelled images + some manual corrections there was arround 10 wrong predictions out of 510 validation images).  
+  ## Objectif 
+  Creating an AI model capable of prediction in real time if the person in the camera frame is wearing a mask.  
+  ![alt text](test.png)  
     
 ## Image cropping  
 
