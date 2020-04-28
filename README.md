@@ -128,4 +128,4 @@ classifier.add(Dense(units=2, activation='softmax'))
 classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 ```
 ## Simple implementation using OpenCV  
-
+![alt text](test.png)  
