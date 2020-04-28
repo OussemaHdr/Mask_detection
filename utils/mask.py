@@ -5,14 +5,14 @@ from keras.models import load_model
 import numpy as np
 
 # parameters for loading data and images
-detection_model_path = 'C:/Users/Ousse/Desktop/Projects/Emotion Detector/utils/cascades/data/haarcascade_frontalface_default.xml'
-emotion_model_path = 'C:/Users/Ousse/Desktop/Projects/Age prediction/mask-detection.h5'
+detection_model_path = 'cascades/data/haarcascade_frontalface_default.xml'
+mask_model_path = '**'
 
 # hyper-parameters for bounding boxes shape
 # loading models
 face_detection = cv2.CascadeClassifier(detection_model_path)
-emotion_classifier = load_model(emotion_model_path, compile=False)
-EMOTIONS = ["No Mask" ,"Mask"]
+mask_classifier = load_model(mask_model_path, compile=False)
+STATUS = ["No Mask" ,"Mask"]
 
 
 # starting video streaming
@@ -31,8 +31,8 @@ while True:
         faces = sorted(faces, reverse=True,
         key=lambda x: (x[2] - x[0]) * (x[3] - x[1]))[0]
         (fX, fY, fW, fH) = faces
-                    # Extract the ROI of the face from the grayscale image, resize it to a fixed 48x48 pixels, and then prepare
-            # the ROI for classification via the CNN
+                   
+            
         roi = frame[fY:fY + fH, fX:fX + fW]
         roi = cv2.resize(roi, (32, 32))
         roi = roi.astype("float") / 255.0
@@ -40,12 +40,12 @@ while True:
         roi = np.expand_dims(roi, axis=0)
         
         
-        preds = emotion_classifier.predict(roi)[0]
-        emotion_probability = np.max(preds)
-        label = EMOTIONS[preds.argmax()]
+        preds = mask_classifier.predict(roi)[0]
+        mask_probability = np.max(preds)
+        label = STATUS[preds.argmax()]
 
  
-    for (i, (emotion, prob)) in enumerate(zip(EMOTIONS, preds)):
+    for (i, (state, prob)) in enumerate(zip(STATUS, preds)):
                 # construct the label text
                 text = "{}: {:.2f}%".format(emotion, prob * 100)
                 w = int(prob * 300)
